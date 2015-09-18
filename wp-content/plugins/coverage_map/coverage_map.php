@@ -40,3 +40,9 @@ $action = (isset($_POST['action']) && in_array($_POST['action'], ["show", "set"]
 add_action("admin_menu", function() use ($action) { 
     add_menu_page("Coverage Map", "Coverage Map", "edit_posts", "coverage_map", ["\CoverageMap\Libs\Manage", $action], "dashicons-location", "6.1");
 });
+
+
+
+// Install and unsinstall
+register_activation_hook(__FILE__, ["\CoverageMap\Libs\Manager", "install"]);
+register_uninstall_hook(__FILE__, ["\CoverageMap\Libs\Manager", "uninstall"]);

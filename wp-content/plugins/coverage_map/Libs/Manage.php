@@ -30,7 +30,7 @@ class Manage
     
     
     
-    // Store options
+    // Store
     public static function storeOptions(array $options)
     {
         foreach ($options as $name=>$value) {
@@ -81,11 +81,7 @@ class Manage
     
     
     
-
-    
-    
-    
-    
+    // Install and uninstall
     public static function install()
     {
         $options = explode(",", self::OPTIONS_LIST);
