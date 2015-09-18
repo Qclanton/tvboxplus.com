@@ -1,0 +1,507 @@
+/*
+Theme Name: TVBoxPlus
+Theme URI: http://wordpress.org/themes/TVBoxPlus
+Author: Ayris
+Author URI: http://wordpress.org/
+Description: The 2013 theme for WordPress takes us back to the blog, featuring a full range of post formats, each displayed beautifully in their own unique way. Design details abound, starting with a vibrant color scheme and matching header images, beautiful typography and icons, and a flexible layout that looks great on any device, big or small.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: black, brown, orange, tan, white, yellow, light, one-column, two-columns, right-sidebar, flexible-width, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, translation-ready
+Text Domain: TVBoxPlus
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+body p, tr, td, th, ol, ul, li {
+font-size:14px;
+color: #303030;
+font-family: open sans;}
+
+html {
+font-size:13px;
+}
+
+a {
+color: #000000;
+text-decoration:underline;
+font-family:open sans;}
+
+a:hover {
+}
+
+h1 a{
+    color: #8EC632;
+    font-size: 24px;
+    font-weight: bold;
+	text-decoration: none;
+}
+
+html, body {
+	background: none repeat scroll 0 0 #FFFFFF;
+    font-family: open sans;
+    margin: 0;
+    padding: 0;
+	width:100%;
+}
+
+body {
+	background: url("images/footer-bg.png") repeat-x scroll center bottom rgba(0, 0, 0, 0);}
+
+hr {
+    background: #d5d6d8;
+    border: 0 none;
+    height: 1px;
+}
+	
+#top-menu-wrapper{
+	background:url("images/topmenu-bg.png") repeat-x scroll right top rgba(0, 0, 0, 0);
+	height:35px;}
+	
+.top-menu {
+	color:black;
+	font-size:14px;
+	width: 940px;
+	margin:0 auto;}	
+	
+.top-menu ul{
+	margin:0 auto;}
+	
+.top-menu li{
+	border-right: 1px solid #FFFFFF;
+	display: inline;
+	float: right;
+	list-style: none outside none;
+	margin: 7px 0 0 25px;
+	padding: 0 25px 0 0;}	
+
+.top-menu a {
+	text-decoration:none;
+}
+
+#header-wrapper{
+	background: url("images/bg.png") repeat-x scroll center top rgba(0, 0, 0, 0);}
+
+#header-inner-wrapper {
+    height: 150px;
+    margin: 0 auto;
+    width: 1050px;}
+	
+#header {
+	margin:0 auto;
+}	
+
+
+#logo {
+    padding-top: 15px;
+    width: 200px;
+}
+
+#call {
+	color: #8EC632;
+	float: right;
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: -92px;
+	width: 530px;}
+
+#logo img {
+    margin-top: -5px;
+	margin-left:10px;
+    position: absolute;
+}
+
+#full-menu-wrapper{
+    margin-right: 40px;
+    margin-top: 130px;}
+
+.menu-shadow{
+    background: url("images/menu-shadow.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 42px;
+    margin: -18px 0 0 270px;
+    padding: 0;
+    position: absolute;
+    width: 745px;
+	}
+
+.menu-main-menu-container {
+    float: right;
+    margin: 0 auto;
+    width: 850px;}
+
+.main-menu {
+	margin:-16px 0 0;}	
+	
+.main-menu ul{
+	float: none;
+	margin-bottom: 0;
+	margin-right: 44px;
+	margin-top: -30px;
+	text-align:center;}
+	
+	
+.main-menu li{
+	display: inline;
+	list-style: none outside none;
+	padding: 0 0 0 25px;
+}	
+
+#menu-item-6 a{
+	color:#8ec632;
+	font-weight:bold;}
+
+.main-menu a {
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.main-announcement{
+    float: left;
+    padding-right: 15px;
+    width: 200px;}
+
+#announcement‏_content{
+	border-bottom:2px dotted #cccccc;
+	height:330px;}
+	
+.main-announcement-img {
+	width:195px;
+	height:109px;
+}
+
+.announcement‏-content-h2 {
+	font-size:18px;
+	color:black;}
+
+.announcement-page-h3{
+    color: #43A704;
+    font-size: 13px;}
+	
+.main-page-time {
+	font-size:14px;
+	color:black;	}
+
+.main-channelName {
+	
+	color:#40a600;
+	font-size:14px;}
+	
+	
+#vod_content  {
+	border-bottom:2px dotted #cccccc;
+	height:350px;}
+	
+.vod-content-h2 {
+	font-size:18px;
+	color:black;}
+	
+.cursor-next {    
+	background: url("images/vod-arrow.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+	float:right;
+	}
+
+.cursor-prev {    
+	background: url("images/vod-arrow2.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+	float:right;
+	padding-right:20px;
+	}
+	
+.cursors {
+	height:35px;
+	width:625px;
+	}
+
+.main-vod {
+    float: left;
+    padding-right: 28px;
+    width: 100px;}
+
+.main-page-h3 {
+    color: #43A704;
+    font-size: 13px;
+    text-align: center;}
+	
+.main-vod-img {
+	height:130px;
+	width:100px;
+	text-align:center;}
+
+	
+#content{
+	margin: 0 auto;
+	min-height: 850px;
+	width: 1006px;
+	margin-top:7px;
+	height:100%;
+}
+
+#posts {
+
+	min-height: 650px;
+}
+.posts {
+    border-bottom: 1px solid #EEEEEE;
+    margin: 0 10px 10px;
+    padding: 5px 0 25px;
+}
+
+.main-page-text {
+	min-height:750px;}
+
+#right-content {
+	float:right;}
+
+.rcontent-h1 {
+	background: url("images/rigconh1-bg.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+	border-radius: 5px;
+	color: #000000;
+	font-size: 18px;
+	padding: 3px;
+	text-align: center;
+	margin-bottom:8px;
+}
+
+.rightcon-img {
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    margin-bottom: 8px;}
+
+
+.rightcon-img a img {
+	width: 350px;
+	height: 130px;
+	vertical-align: bottom;
+}
+	
+	
+#footer {
+	height:150px;
+	}
+
+#footer-menu {
+	background: url("images/footmenu-bg.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+	height: 39px;
+}
+	
+.footer-menu {
+	width:940px;
+	margin: 0 auto;
+	text-align:center;
+	}
+.footer-menu ul {
+	padding:9px 0 0;}
+
+.footer-menu li {
+    display: inline;
+    list-style: none outside none;
+    padding: 0;
+	border-right:1px solid gray;
+	padding:0 10px;}
+	
+#menu-item-20 {
+	border-right:none;}
+	
+.footer-menu a {
+	text-decoration:none;}
+	
+#copyright{
+	color: #000000;
+	margin-top: 15px;
+	text-align: center;}
+	
+#vbox {
+	min-height:750px;}
+	
+.vbox-h1 {
+    background: url("images/rigconh1-bg.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    color: #000000;
+    font-size: 18px;
+    margin: 0 auto;
+    padding: 3px;
+    text-align: center;
+    width: 350px;
+	font-weight:bold;}
+	
+.vbox-content {
+width:500px;
+margin:0 auto;}
+
+.getstarted {
+    background: url("images/button-started.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    width: 225px;
+	cursor:pointer;
+}
+
+.box-left {
+    float: left;
+    margin-top: -95px;
+    width: 200px;}
+	
+.box-right {
+    float: right;
+    margin-top: -95px;
+    width: 200px;}
+
+.tabs {
+    border-bottom: 10px solid #6FB03E;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    width: 976px;
+	margin-bottom:15px;
+	cursor:pointer;}	
+
+#tab1 {
+	position:relative;
+	z-index:5;
+	 margin-right: -5px;}
+#tab2 {
+	position:relative;
+	z-index:4;
+	 margin-right: -5px;}
+#tab3 {
+	position:relative;
+	z-index:3;
+	 margin-right: -5px;}
+	
+.tabs li{
+    background: url("images/button-passive.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #D5D5D5;
+	border-bottom:none;
+    border-radius: 10px 30px 0 0;
+    float: left;
+    font-size: 16px;
+    line-height: 29px;
+    list-style: none outside none;
+    position: relative;
+    text-align: center;
+    width: 270px;
+	text-decoration:none;
+	color:#9d9ea2;
+	text-transform:uppercase;
+	font-weight: bold;}
+	
+.tabs > .current {
+    background: url("images/active-button.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+	color:#FFFFFF;
+	z-index:10!important;
+	position:relative;
+}
+
+	
+.tabs-content {
+    width:960px;
+    overflow:hidden;
+}
+.tabs-content ul li {
+    width:1000px;
+    height:300px;
+}
+.box {  
+	display: none; /* по умолчанию прячем все блоки */  
+    }  
+.box.visible {  
+    display: block; /* по умолчанию показываем нужный блок */  
+    }  
+
+.box2 {
+	margin-bottom:120px;}
+	
+.box2 h1 {
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;}
+	
+.box2 h2 {
+	color:#8ec632;
+	font-size:20px;
+	font-weight:bold;
+	}
+
+.box2-left {
+    float: left;
+    margin-left: 20px;
+    width: 165px;}
+
+.box2-right{
+    float: right;
+    margin-right: 20px;
+    width: 175px;}
+	
+.powerup {
+    height: 415px;}
+	
+.box2-powerup-img1 {
+    float: left;
+    margin-top: 65px;
+    position: absolute;}
+.box2-left2 {
+    margin-left: 100px;
+    margin-top: 2px;
+    position: absolute;
+    width: 319px;}
+	
+.box2-powerup-img2 {
+	float: right;
+    margin-right: -320px;
+    margin-top: 97px;}
+	
+.box2-right2{
+    float: right;
+    margin-right: 20px;
+    width: 300px;}
+	
+.box2-wifi-img {
+	text-align: center;}
+
+.box3-table {
+	width:960px;
+	border:none;}
+
+.box3-table td {
+}
+
+	
+.box3-table h2 {
+	color:#8ec632;
+	font-size:20px;
+	font-weight:bold;	}
+
+.box3-table-video {
+	background:#f7f7f7;
+	height:95px;}
+.col2box2 {	
+	padding-right:15px;}
+	
+.contact {
+	border-collapse: collapse;
+	border-bottom:1px solid #808080;}
+
+.contact tr{
+	border-top:1px solid #808080;
+}
+
+.contact td{
+	padding:10px;
+	padding:10px;
+}
+
+#map {
+    height: 480px;
+    margin: 0;
+    padding: 0;
+    width: 592px;
+}
