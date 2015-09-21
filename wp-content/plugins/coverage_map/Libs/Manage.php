@@ -7,11 +7,21 @@ class Manage
     const OPTIONS_LIST = "center,zones,points";
     
     
-    
     // Actions
     public static function show()
-    {
-        $content = Helper::render(__DIR__ . "/../Views/Options.php", self::getStoredOptions());
+    {   
+        // Get options   
+        $options = self::getStoredOptions();
+        
+        
+        // Tune options
+        if (isset($options->points)) { 
+            $options->points = array_values((array)$options->points); // 'points' should be numeric array
+        }
+        
+        
+        // Show content
+        $content = Helper::render(__DIR__ . "/../Views/Options.php", $options);
         echo $content;
     }
     
@@ -68,7 +78,9 @@ class Manage
                 'address' => null,
                 'longitude' => null,
                 'latitude' => null,
-            ]
+            ],
+            
+            'points' => []
         ];
         
         if (array_key_exists($name, $default)) {  
