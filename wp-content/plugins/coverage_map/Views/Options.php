@@ -137,7 +137,7 @@
                                     <label for="options[zones][<?= count($zones)+1 ?>][radius]">Radius</label>
                                 </th>
                                 <td>
-                                    <input name="options[zones][<?= count($zones)+1 ?>][radius]" type="text" class="short-text">
+                                    <input name="options[zones][<?= count($zones)+1 ?>][radius]" type="text" class="short-text"> meters
                                 </td>
                             </tr>
                             
@@ -146,7 +146,7 @@
                                     <label for="options[zones][<?= count($zones)+1 ?>][color]">Color</label>
                                 </th>
                                 <td>
-                                    <input name="options[zones][<?= count($zones)+1 ?>][color]" type="text" class="short-text">
+                                    <input name="options[zones][<?= count($zones)+1 ?>][color]" type="text" class="short-text color-picker">
                                 </td>
                             </tr>
                         <tbody>
@@ -170,7 +170,7 @@
                                         <label for="options[zones][<?= $i ?>][radius]">Radius</label>
                                     </th>
                                     <td>
-                                        <input name="options[zones][<?= $i ?>][radius]" type="text" class="short-text" value="<?= $zone->radius ?>">
+                                        <input name="options[zones][<?= $i ?>][radius]" type="text" class="short-text" value="<?= $zone->radius ?>"> meters
                                     </td>
                                 </tr>
                                 
@@ -179,7 +179,7 @@
                                         <label for="options[zones][<?= $i ?>][color]">Color</label>
                                     </th>
                                     <td>
-                                        <input name="options[zones][<?= $i ?>][color]" type="text" class="short-text" value="<?= $zone->color ?>">
+                                        <input name="options[zones][<?= $i ?>][color]" type="text" class="short-text color-picker" value="<?= $zone->color ?>">
                                     </td>
                                 </tr>
                             <? } ?>

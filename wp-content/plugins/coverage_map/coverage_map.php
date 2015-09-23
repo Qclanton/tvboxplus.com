@@ -40,6 +40,9 @@ add_action("admin_enqueue_scripts", function() {
     
     wp_enqueue_script("coverage-map-zones-toggle", plugin_dir_url(__FILE__) . "Views/Js/ZonesToggle.js", ["jquery"]);
     wp_enqueue_script("coverage-map-zone-remove", plugin_dir_url(__FILE__) . "Views/Js/ZonesRemove.js", ["jquery"]);
+    
+    wp_enqueue_style("wp-color-picker");      
+    wp_enqueue_script("coverage-map-zone-color-picker", plugin_dir_url(__FILE__) . "Views/Js/ZonesColorPicker.js", ["jquery", "wp-color-picker"]);
 });
         
         
