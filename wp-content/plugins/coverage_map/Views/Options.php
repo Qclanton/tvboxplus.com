@@ -54,7 +54,7 @@
                                 <input name="options[map][height]" type="text" value="<?= $map->height ?>" class="short-text">
                             </td>
                         </tr>
-                    <tbody>
+                    </tbody>
                 </table>            
             </div>
             
@@ -97,7 +97,7 @@
                                     <textarea name="options[points][<?= count($points)+1 ?>][description]" rows="10" cols="50" class="large-text code"></textarea>
                                 </td>
                             </tr>                     
-                        <tbody>
+                        </tbody>
                     </table>
                 </div>
                 
@@ -160,6 +160,15 @@
                         <tbody>
                             <tr>
                                 <th scope="row">
+                                    <label for="options[zones][<?= count($zones)+1 ?>][speed]">Speed</label>
+                                </th>
+                                <td>
+                                    <input name="options[zones][<?= count($zones)+1 ?>][speed]" type="text" class="short-text">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th scope="row">
                                     <label for="options[zones][<?= count($zones)+1 ?>][radius]">Radius</label>
                                 </th>
                                 <td>
@@ -175,7 +184,7 @@
                                     <input name="options[zones][<?= count($zones)+1 ?>][color]" type="text" class="short-text color-picker">
                                 </td>
                             </tr>
-                        <tbody>
+                        </tbody>
                     </table>
                 </div>
                 
@@ -190,6 +199,15 @@
                                         <a href="#" class="remove-zone button" data-zone="<?= $i ?>">Delete</a>
                                     </th>
                                 </tr> 
+                                
+                                <tr>
+                                    <th scope="row">
+                                        <label for="options[zones][<?= $i ?>][speed]">Speed</label>
+                                    </th>
+                                    <td>
+                                        <input name="options[zones][<?= $i ?>][speed]" type="text" class="short-text" value="<?= $zone->speed ?>">
+                                    </td>
+                                </tr>
                                 
                                 <tr data-zone="<?= $i ?>">
                                     <th scope="row">
@@ -215,64 +233,9 @@
             </div>
         </div>
         
-        <br>
-        <div id="map">There will be map</div>
-        <br>
-        
+        <!-- Map -->        
+        <?= \CoverageMap\Libs\Helper::render(__DIR__ . "/Map.php", $vars); ?>
+
         <input type="submit" class="button-primary" value="Save changes">
     </form>
 </div>
-
-
-
-
-
-
-<!-- Address autocomplete -->
-<script>
-function autocompleteAddresses() {
-    var addresses = document.getElementsByClassName('address');
-
-    for (var i=0; i<addresses.length; i++) {
-        var address = addresses[i];
-
-        var id = address.getAttribute('id');
-        var longitude = null;
-        var latitude = null;
-
-
-
-        // Define longitude and latitude    
-        var dependsElements = document.querySelectorAll('input[data-address-id="' + id + '"');
-
-        for (var j=0; j<dependsElements.length; j++) {
-            dependElement = dependsElements[j];
-
-            var classes = dependElement.getAttribute('class').split(' ');
-
-            if (classes.indexOf('longitude') !== -1) {
-                longitude = dependElement;
-            } else if (classes.indexOf('latitude') !== -1) {
-                latitude = dependElement;
-            }
-        }
-
-
-        // Set autocomplete to address field
-        autocomplete = new google.maps.places.Autocomplete(
-            address,
-            {types: ['geocode']}
-        );
-
-
-        // Add auto-filling longitude and latitude after autocomplete
-        autocomplete.addListener('place_changed', function() {
-            var place = this.getPlace();
-
-            longitude.setAttribute('value', place.geometry.location.lng());
-            latitude.setAttribute('value', place.geometry.location.lat());
-        });
-	}
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=autocompleteAddresses" async defer></script>

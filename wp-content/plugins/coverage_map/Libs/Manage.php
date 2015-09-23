@@ -30,7 +30,6 @@ class Manage
             ? $_COOKIE['coverage-map-active-tab']
             : "map"
         );
-            
         
         
         // Show content
