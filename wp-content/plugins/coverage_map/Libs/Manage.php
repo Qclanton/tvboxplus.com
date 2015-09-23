@@ -28,7 +28,7 @@ class Manage
         
         $options->activeTab = (isset($_COOKIE['coverage-map-active-tab'])
             ? $_COOKIE['coverage-map-active-tab']
-            : "center"
+            : "map"
         );
             
         
@@ -87,17 +87,14 @@ class Manage
     private static function mergeWithDefaultValues($name, $value)
     {
         $default = [
-            'center' => [
+            'map' => [
                 'address' => null,
                 'longitude' => null,
                 'latitude' => null,
-            ],
-            
-            'map' => [
                 'zoom' => 13,
                 'width' => 500,
                 'height' => 500,
-            ],
+            ]
         ];
         
         if (array_key_exists($name, $default)) {  

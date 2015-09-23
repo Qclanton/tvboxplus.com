@@ -2,10 +2,9 @@
     <h1>Options</h1>
     
     <h2 class="nav-tab-wrapper">
-        <a href="#" class="nav-tab <?= $activeTab == "center" ? "nav-tab-active" : "" ?>" data-tab="center" >Center</a>
+        <a href="#" class="nav-tab <?= $activeTab == "map" ? "nav-tab-active" : "" ?>" data-tab="map">Map</a>
         <a href="#" class="nav-tab <?= $activeTab == "points" ? "nav-tab-active" : "" ?>" data-tab="points">Points</a>
         <a href="#" class="nav-tab <?= $activeTab == "zones" ? "nav-tab-active" : "" ?>" data-tab="zones">Zones</a>
-        <a href="#" class="nav-tab <?= $activeTab == "map" ? "nav-tab-active" : "" ?>" data-tab="map">Map</a>
     </h2>
     
     
@@ -13,22 +12,50 @@
         <input type="hidden" name="action" value="set">
         
         <div class="tabs-wrapper">
-            <!-- Tab 'center'-->
-            <div class="tab-content" data-tab="center" <?= $activeTab == "center" ? "" : "style='display:none'" ?>>
+            
+            <!-- Tab 'map'-->
+            <div class="tab-content" data-tab="map" <?= $activeTab == "map" ? "" : "style='display:none'" ?>>
                 <table class="form-table">
                     <tbody>
                         <tr>
                             <th scope="row">
-                                <label for="options[center][address]">Address</label>
+                                <label for="options[map][address]">Center Address</label>
                             </th>
                             <td>
-                                <input id="center-address"name="options[center][address]" type="text" value="<?= $center->address ?>" class="regular-text address">
-                                <input data-address-id="center-address" name="options[center][longitude]" class="longitude" type="hidden" value="<?= $center->longitude ?>">
-                                <input data-address-id="center-address" name="options[center][latitude]" class="latitude" type="hidden" value="<?= $center->latitude ?>">
+                                <input id="center-address" name="options[map][address]" type="text" value="<?= $map->address ?>" class="regular-text address">
+                                <input data-address-id="center-address" name="options[map][longitude]" class="longitude" type="hidden" value="<?= $map->longitude ?>">
+                                <input data-address-id="center-address" name="options[map][latitude]" class="latitude" type="hidden" value="<?= $map->latitude ?>">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">
+                                <label for="options[map][zoom]">Zoom</label>
+                            </th>
+                            <td>
+                                <input name="options[map][zoom]" type="text" value="<?= $map->zoom ?>" class="short-text">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">
+                                <label for="options[map][width]">Width</label>
+                            </th>
+                            <td>
+                                <input name="options[map][width]" type="text" value="<?= $map->width ?>" class="short-text">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">
+                                <label for="options[map][height]">Height</label>
+                            </th>
+                            <td>
+                                <input name="options[map][height]" type="text" value="<?= $map->height ?>" class="short-text">
                             </td>
                         </tr>
                     <tbody>
-                </table>
+                </table>            
             </div>
             
             
@@ -188,46 +215,11 @@
                     </table>
                 </div>
             </div>
-            
-            
-            
-            <!-- Tab 'size'-->
-            <div class="tab-content" data-tab="map" <?= $activeTab == "map" ? "" : "style='display:none'" ?>>
-                <table class="form-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">
-                                <label for="options[map][zoom]">Zoom</label>
-                            </th>
-                            <td>
-                                <input name="options[map][zoom]" type="text" value="<?= $map->zoom ?>" class="short-text">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <th scope="row">
-                                <label for="options[map][width]">Width</label>
-                            </th>
-                            <td>
-                                <input name="options[map][width]" type="text" value="<?= $map->width ?>" class="short-text">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <th scope="row">
-                                <label for="options[map][height]">Height</label>
-                            </th>
-                            <td>
-                                <input name="options[map][height]" type="text" value="<?= $map->height ?>" class="short-text">
-                            </td>
-                        </tr>
-                    <tbody>
-                </table>
-                
-                <div id="map">There will be map</div>
-            </div>
         </div>
         
+        <br>
+        <div id="map">There will be map</div>
+        <br>
         
         <input type="submit" class="button-primary" value="Save changes">
     </form>
