@@ -76,11 +76,17 @@
                 
         
                 <!-- List of existing points -->
-                <div id="points">
+                <div id="points">                    
                     <table class="form-table">
                         <tbody>
                             <? foreach ($points as $i=>$point) { ?>
-                                <tr>
+                                <tr data-point="<?= $i ?>">
+                                    <th scope="row">
+                                        <a href="#" class="remove-point button" data-point="<?= $i ?>">Delete</a>
+                                    </th>
+                                </tr>                                
+                                
+                                <tr data-point="<?= $i ?>">
                                     <th scope="row">
                                         <label for="options[points][<?= $i ?>][address]">Address</label>
                                     </th>
@@ -91,7 +97,7 @@
                                     </td>
                                 </tr>
                                 
-                                <tr>
+                                <tr data-point="<?= $i ?>">
                                     <th scope="row">
                                         <label for="options[points][<?= $i ?>][title]">Title</label>
                                     </th>
@@ -100,7 +106,7 @@
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <tr data-point="<?= $i ?>">
                                     <th scope="row">
                                         <label for="options[points][<?= $i ?>][title]">Description</label>
                                     </th>
