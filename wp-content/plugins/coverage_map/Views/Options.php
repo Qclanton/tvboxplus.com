@@ -124,7 +124,68 @@
             
             <!-- Tab 'zones'-->
             <div class="tab-content" data-tab="zones" style="display:none">
-                <p>There is no zones yet</p>
+                <br>
+                <a href="#" class="page-title-action new-zone-toggle" data-state="hidden">Add zone</a>
+                <a href="#" class="page-title-action existing-zone-toggle" data-state="shown">Hide zones</a>
+                
+                <!-- 'New Zone' block -->
+                <div id="new-zone" style="display: none">
+                    <table class="form-table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <label for="options[zones][<?= count($zones)+1 ?>][radius]">Radius</label>
+                                </th>
+                                <td>
+                                    <input name="options[zones][<?= count($zones)+1 ?>][radius]" type="text" class="short-text">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th scope="row">
+                                    <label for="options[zones][<?= count($zones)+1 ?>][color]">Color</label>
+                                </th>
+                                <td>
+                                    <input name="options[zones][<?= count($zones)+1 ?>][color]" type="text" class="short-text">
+                                </td>
+                            </tr>
+                        <tbody>
+                    </table>
+                </div>
+                
+        
+                <!-- List of existing zones -->
+                <div id="zones">                    
+                    <table class="form-table">
+                        <tbody>
+                            <? foreach ($zones as $i=>$zone) { ?>
+                                <tr data-zone="<?= $i ?>">
+                                    <th scope="row">
+                                        <a href="#" class="remove-zone button" data-zone="<?= $i ?>">Delete</a>
+                                    </th>
+                                </tr> 
+                                
+                                <tr data-zone="<?= $i ?>">
+                                    <th scope="row">
+                                        <label for="options[zones][<?= $i ?>][radius]">Radius</label>
+                                    </th>
+                                    <td>
+                                        <input name="options[zones][<?= $i ?>][radius]" type="text" class="short-text" value="<?= $zone->radius ?>">
+                                    </td>
+                                </tr>
+                                
+                                <tr data-zone="<?= $i ?>">
+                                    <th scope="row">
+                                        <label for="options[zones][<?= $i ?>][color]">Color</label>
+                                    </th>
+                                    <td>
+                                        <input name="options[zones][<?= $i ?>][color]" type="text" class="short-text" value="<?= $zone->color ?>">
+                                    </td>
+                                </tr>
+                            <? } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         

@@ -16,7 +16,14 @@ class Manage
         
         // Tune options
         if (isset($options->points)) { 
-            $options->points = array_values((array)$options->points); // 'points' should be numeric array
+            // "Points" should be numeric array
+            $options->points = array_values((array)$options->points);
+            
+            // "Zones" should be numeric array ordere by radius
+            $options->zones = array_values((array)$options->zones);
+            usort($options->zones, function($some, $other) { 
+                return ($some->radius > $other->radius ? 1 : -1);
+            });
         }
         
         
@@ -78,9 +85,7 @@ class Manage
                 'address' => null,
                 'longitude' => null,
                 'latitude' => null,
-            ],
-            
-            'points' => []
+            ]
         ];
         
         if (array_key_exists($name, $default)) {  
