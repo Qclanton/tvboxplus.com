@@ -2,9 +2,10 @@
     <h1>Options</h1>
     
     <h2 class="nav-tab-wrapper">
-        <a href="#" class="nav-tab nav-tab-active" data-tab="center" >Center</a>
-        <a href="#" class="nav-tab" data-tab="points">Points</a>
-        <a href="#" class="nav-tab" data-tab="zones">Zones</a>
+        <a href="#" class="nav-tab <?= $activeTab == "center" ? "nav-tab-active" : "" ?>" data-tab="center" >Center</a>
+        <a href="#" class="nav-tab <?= $activeTab == "points" ? "nav-tab-active" : "" ?>" data-tab="points">Points</a>
+        <a href="#" class="nav-tab <?= $activeTab == "zones" ? "nav-tab-active" : "" ?>" data-tab="zones">Zones</a>
+        <a href="#" class="nav-tab <?= $activeTab == "map" ? "nav-tab-active" : "" ?>" data-tab="map">Map</a>
     </h2>
     
     
@@ -13,7 +14,7 @@
         
         <div class="tabs-wrapper">
             <!-- Tab 'center'-->
-            <div class="tab-content" data-tab="center">
+            <div class="tab-content" data-tab="center" <?= $activeTab == "center" ? "" : "style='display:none'" ?>>
                 <table class="form-table">
                     <tbody>
                         <tr>
@@ -33,7 +34,7 @@
             
             
             <!-- Tab 'points'-->
-            <div class="tab-content" data-tab="points" style="display:none">
+            <div class="tab-content" data-tab="points" <?= $activeTab == "points" ? "" : "style='display:none'" ?>>
                 <br>
                 <a href="#" class="page-title-action new-point-toggle" data-state="hidden">Add point</a>
                 <a href="#" class="page-title-action existing-points-toggle" data-state="shown">Hide Points</a>
@@ -123,7 +124,7 @@
             
             
             <!-- Tab 'zones'-->
-            <div class="tab-content" data-tab="zones" style="display:none">
+            <div class="tab-content" data-tab="zones" <?= $activeTab == "zones" ? "" : "style='display:none'" ?>>
                 <br>
                 <a href="#" class="page-title-action new-zone-toggle" data-state="hidden">Add zone</a>
                 <a href="#" class="page-title-action existing-zone-toggle" data-state="shown">Hide zones</a>
@@ -187,11 +188,48 @@
                     </table>
                 </div>
             </div>
+            
+            
+            
+            <!-- Tab 'size'-->
+            <div class="tab-content" data-tab="map" <?= $activeTab == "map" ? "" : "style='display:none'" ?>>
+                <table class="form-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <label for="options[map][zoom]">Zoom</label>
+                            </th>
+                            <td>
+                                <input name="options[map][zoom]" type="text" value="<?= $map->zoom ?>" class="short-text">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">
+                                <label for="options[map][width]">Width</label>
+                            </th>
+                            <td>
+                                <input name="options[map][width]" type="text" value="<?= $map->width ?>" class="short-text">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">
+                                <label for="options[map][height]">Height</label>
+                            </th>
+                            <td>
+                                <input name="options[map][height]" type="text" value="<?= $map->height ?>" class="short-text">
+                            </td>
+                        </tr>
+                    <tbody>
+                </table>
+                
+                <div id="map">There will be map</div>
+            </div>
         </div>
         
         
-        <input type="submit" class="button-primary" value="Save">
-        <div id="map">There will be map</div>
+        <input type="submit" class="button-primary" value="Save changes">
     </form>
 </div>
 

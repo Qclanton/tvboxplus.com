@@ -4,7 +4,7 @@ namespace CoverageMap\Libs;
 class Manage
 {
     const OPTIONS_PREFIX = "coverage_map_";
-    const OPTIONS_LIST = "center,zones,points";
+    const OPTIONS_LIST = "center,zones,points,map";
     
     
     // Actions
@@ -25,6 +25,12 @@ class Manage
                 return ($some->radius > $other->radius ? 1 : -1);
             });
         }
+        
+        $options->activeTab = (isset($_COOKIE['coverage-map-active-tab'])
+            ? $_COOKIE['coverage-map-active-tab']
+            : "center"
+        );
+            
         
         
         // Show content
@@ -85,7 +91,13 @@ class Manage
                 'address' => null,
                 'longitude' => null,
                 'latitude' => null,
-            ]
+            ],
+            
+            'map' => [
+                'zoom' => 13,
+                'width' => 500,
+                'height' => 500,
+            ],
         ];
         
         if (array_key_exists($name, $default)) {  
