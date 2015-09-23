@@ -5,12 +5,29 @@
         
         var state = $(this).attr('data-state');
         
-        if (state == 'hidden') {
+        if (state == 'hidden') {            
+            // Show "New point" block
             $('#new-point').show()
+
+            
+            // Hide "Existing Points" block
+            $('#points').hide()
+
+            
+            // Mark as shown
             $(this).attr('data-state', 'shown');
-            $(this).html('Hide adding form');
+            $(this).html('Show existing points');
+            
         } else {
+            // Hide "New point" block
             $('#new-point').hide()
+
+            
+            // Show "Existing Points" block
+            $('#points').show()
+
+            
+            // Mark as hidden
             $(this).attr('data-state', 'hidden');
             $(this).html('Add point');
         }
@@ -25,22 +42,4 @@
             $('#new-point').html('');            
         }  
     });
-    
-    
-    // Hide existsing points
-    $('.existing-points-toggle ').on('click', function(ev) {
-        ev.preventDefault();
-        
-        var state = $(this).attr('data-state');
-        
-        if (state == 'hidden') {
-            $('#points').show()
-            $(this).attr('data-state', 'shown');
-            $(this).html('Hide points');
-        } else {
-            $('#points').hide()
-            $(this).attr('data-state', 'hidden');
-            $(this).html('Show points');
-        }  
-    }); 
 }); })(jQuery);

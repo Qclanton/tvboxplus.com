@@ -64,7 +64,6 @@
             <div class="tab-content" data-tab="points" <?= $activeTab == "points" ? "" : "style='display:none'" ?>>
                 <br>
                 <a href="#" class="page-title-action new-point-toggle" data-state="hidden">Add point</a>
-                <a href="#" class="page-title-action existing-points-toggle" data-state="shown">Hide Points</a>
                 
                 <!-- 'New Point' block -->
                 <div id="new-point" style="display: none">
@@ -154,7 +153,6 @@
             <div class="tab-content" data-tab="zones" <?= $activeTab == "zones" ? "" : "style='display:none'" ?>>
                 <br>
                 <a href="#" class="page-title-action new-zone-toggle" data-state="hidden">Add zone</a>
-                <a href="#" class="page-title-action existing-zone-toggle" data-state="shown">Hide zones</a>
                 
                 <!-- 'New Zone' block -->
                 <div id="new-zone" style="display: none">

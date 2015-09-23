@@ -5,12 +5,29 @@
         
         var state = $(this).attr('data-state');
         
-        if (state == 'hidden') {
+        if (state == 'hidden') {            
+            // Show "New zone" block
             $('#new-zone').show()
+
+            
+            // Hide "Existing Zones" block
+            $('#zones').hide()
+
+            
+            // Mark as shown
             $(this).attr('data-state', 'shown');
-            $(this).html('Hide adding form');
+            $(this).html('Show existing zones');
+            
         } else {
+            // Hide "New zone" block
             $('#new-zone').hide()
+
+            
+            // Show "Existing Zones" block
+            $('#zones').show()
+
+            
+            // Mark as hidden
             $(this).attr('data-state', 'hidden');
             $(this).html('Add zone');
         }
@@ -25,22 +42,4 @@
             $('#new-zone').html('');            
         }  
     });
-    
-    
-    // Hide existsing zones
-    $('.existing-zone-toggle ').on('click', function(ev) {
-        ev.preventDefault();
-        
-        var state = $(this).attr('data-state');
-        
-        if (state == 'hidden') {
-            $('#points').show()
-            $(this).attr('data-state', 'shown');
-            $(this).html('Hide zones');
-        } else {
-            $('#points').hide()
-            $(this).attr('data-state', 'hidden');
-            $(this).html('Show zones');
-        }  
-    }); 
 }); })(jQuery);
