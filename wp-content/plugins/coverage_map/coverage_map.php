@@ -37,6 +37,10 @@ add_action("admin_enqueue_scripts", function() {
     wp_enqueue_script("google-maps-api", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places,drawing,geometry");
     
     
+    // For Map
+    wp_enqueue_script("coverage-map-map",  plugin_dir_url(__FILE__) . "Views/Js/Map.js", ["jquery"]);
+    wp_enqueue_script("coverage-map-map-toggle", plugin_dir_url(__FILE__) . "Views/Js/MapToggle.js", ["jquery"]); 
+    
     
     // For autocomplete
     wp_enqueue_script("coverage-map-address-autocomplete", plugin_dir_url(__FILE__) . "Views/Js/AddressAutocomplete.js", ["jquery"]);
@@ -54,14 +58,7 @@ add_action("admin_enqueue_scripts", function() {
     wp_enqueue_style("wp-color-picker");  
     wp_enqueue_script("coverage-map-zones-toggle", plugin_dir_url(__FILE__) . "Views/Js/ZonesToggle.js", ["jquery"]);
     wp_enqueue_script("coverage-map-zone-remove", plugin_dir_url(__FILE__) . "Views/Js/ZonesRemove.js", ["jquery"]);            
-    wp_enqueue_script("coverage-map-zone-color-picker", plugin_dir_url(__FILE__) . "Views/Js/ZonesColorPicker.js", ["jquery", "wp-color-picker"]);
-    
-    
-    
-    
-    // For Map
-    wp_enqueue_script("coverage-map-map",  plugin_dir_url(__FILE__) . "Views/Js/Map.js", ["jquery"]);
-    wp_enqueue_script("coverage-map-map-toggle", plugin_dir_url(__FILE__) . "Views/Js/MapToggle.js", ["jquery"]); 
+    wp_enqueue_script("coverage-map-zone-color-picker", plugin_dir_url(__FILE__) . "Views/Js/ZonesColorPicker.js", ["jquery", "wp-color-picker"]);  
 });
         
         

@@ -1,3 +1,8 @@
+// Init map globally
+var coverageMap = null;
+
+
+
 function drawZones(coverageMap, center, circles) {
     // Draw circles
     var drawnZones = [];
@@ -71,7 +76,7 @@ function initMap(settings) {
     // Init map
     var centerMap = new google.maps.LatLng(settings.center.latitude, settings.center.longitude);  
 
-    var coverageMap = new google.maps.Map(document.getElementById('map'), {
+    coverageMap = new google.maps.Map(document.getElementById('map'), {
         center: centerMap,
         zoom: settings.zoom,
         panControl: true,
@@ -80,7 +85,6 @@ function initMap(settings) {
             style: google.maps.ZoomControlStyle.SMALL
         }
     });	
-
 
     settings.addresses.forEach(function(address) {
         var position = new google.maps.LatLng(address.latitude, address.longitude);
