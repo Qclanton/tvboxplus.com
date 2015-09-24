@@ -1,4 +1,4 @@
-function drawZones(coverageMap, center) {
+function drawZones(coverageMap, center, circles) {
     // Draw circles
     var drawnZones = [];
     var openedCirclesInfoWindows = [];
@@ -67,13 +67,13 @@ function eraseZones(zones) {
 
 
 // Map 
-function initMap() {
+function initMap(settings) {
     // Init map
-    var centerMap = new google.maps.LatLng(center.latitude, center.longitude);  
+    var centerMap = new google.maps.LatLng(settings.center.latitude, settings.center.longitude);  
 
     var coverageMap = new google.maps.Map(document.getElementById('map'), {
         center: centerMap,
-        zoom: 11,
+        zoom: settings.zoom,
         panControl: true,
         zoomControl: true,
         zoomControlOptions: {
@@ -82,7 +82,7 @@ function initMap() {
     });	
 
 
-    addresses.forEach(function(address) {
+    settings.addresses.forEach(function(address) {
         var position = new google.maps.LatLng(address.latitude, address.longitude);
 
         // Create the marker
@@ -109,7 +109,7 @@ function initMap() {
 
 
                 // Draw zones
-                address.zones = drawZones(coverageMap, position);
+                address.zones = drawZones(coverageMap, position, settings.circles);
 
 
                 // Mark as shown

@@ -42,7 +42,7 @@
                                 <label for="options[map][width]">Width</label>
                             </th>
                             <td>
-                                <input name="options[map][width]" type="text" value="<?= $map->width ?>" class="short-text">
+                                <input name="options[map][width]" type="text" value="<?= $map->width ?>" class="short-text"> pixels
                             </td>
                         </tr>
                         
@@ -51,11 +51,17 @@
                                 <label for="options[map][height]">Height</label>
                             </th>
                             <td>
-                                <input name="options[map][height]" type="text" value="<?= $map->height ?>" class="short-text">
+                                <input name="options[map][height]" type="text" value="<?= $map->height ?>" class="short-text"> pixels
                             </td>
                         </tr>
                     </tbody>
-                </table>            
+                </table>
+                
+                <!-- Map -->
+                <a data-state="hidden" id="map-toggle" class="button" href="#" style="margin-bottom: 10px">Show Map</a>          
+                <div id="map-wrapper" style="display: none; margin-bottom: 10px">
+                    <?= \CoverageMap\Libs\Helper::render(__DIR__ . "/Map.php", $vars); ?> 
+                </div>
             </div>
             
             
@@ -163,7 +169,7 @@
                                     <label for="options[zones][<?= count($zones)+1 ?>][speed]">Speed</label>
                                 </th>
                                 <td>
-                                    <input name="options[zones][<?= count($zones)+1 ?>][speed]" type="text" class="short-text">
+                                    <input name="options[zones][<?= count($zones)+1 ?>][speed]" type="text" class="short-text"> mbps
                                 </td>
                             </tr>
                             
@@ -205,7 +211,7 @@
                                         <label for="options[zones][<?= $i ?>][speed]">Speed</label>
                                     </th>
                                     <td>
-                                        <input name="options[zones][<?= $i ?>][speed]" type="text" class="short-text" value="<?= $zone->speed ?>">
+                                        <input name="options[zones][<?= $i ?>][speed]" type="text" class="short-text" value="<?= $zone->speed ?>"> mbps
                                     </td>
                                 </tr>
                                 
@@ -232,9 +238,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Map -->        
-        <?= \CoverageMap\Libs\Helper::render(__DIR__ . "/Map.php", $vars); ?>
 
         <input type="submit" class="button-primary" value="Save changes">
     </form>

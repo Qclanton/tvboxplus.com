@@ -61,6 +61,7 @@ add_action("admin_enqueue_scripts", function() {
     
     // For Map
     wp_enqueue_script("coverage-map-map",  plugin_dir_url(__FILE__) . "Views/Js/Map.js", ["jquery"]);
+    wp_enqueue_script("coverage-map-map-toggle", plugin_dir_url(__FILE__) . "Views/Js/MapToggle.js", ["jquery"]); 
 });
         
         
