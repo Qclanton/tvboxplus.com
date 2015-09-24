@@ -11,21 +11,8 @@ class Manage
     public static function show()
     {   
         // Get options   
-        $options = self::getStoredOptions();
-        
-        
-        // Tune options
-        if (isset($options->points)) { 
-            // "Points" should be numeric array
-            $options->points = array_values((array)$options->points);
-            
-            // "Zones" should be numeric array ordere by radius
-            $options->zones = array_values((array)$options->zones);
-            usort($options->zones, function($some, $other) { 
-                return ($some->radius > $other->radius ? 1 : -1);
-            });
-        }
-        
+        $options = self::getStoredOptions();        
+                
         $options->activeTab = (isset($_COOKIE['coverage-map-active-tab'])
             ? $_COOKIE['coverage-map-active-tab']
             : "map"
@@ -64,7 +51,7 @@ class Manage
         }   
     }
     
-    private static function getStoredOptions() 
+    public static function getStoredOptions() 
     {
         $list = explode(",", self::OPTIONS_LIST);
         $stored = [];
@@ -80,7 +67,26 @@ class Manage
             $stored[$name] = self::mergeWithDefaultValues($name, $value);
         }
         
-        return Helper::toObject($stored);
+        return self::tuneOptions(Helper::toObject($stored));;
+    }
+    
+    public static function tuneOptions($options) 
+    {
+        if (isset($options->points)) { 
+            // "Points" should be numeric array
+            $options->points = array_values((array)$options->points);
+        }
+        
+        
+        if (isset($options->zones)) {    
+            // "Zones" should be numeric array ordere by radius
+            $options->zones = array_values((array)$options->zones);
+            usort($options->zones, function($some, $other) { 
+                return ($some->radius > $other->radius ? 1 : -1);
+            });
+        }
+        
+        return $options;
     }
     
     private static function mergeWithDefaultValues($name, $value)

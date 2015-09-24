@@ -75,6 +75,11 @@ add_action("admin_menu", function() use ($action) {
 
 
 
+// Shortcodes
+add_shortcode("coverage_map", ["\CoverageMap\Libs\Shortcodes", "drawMap"]);
+
+
+
 // Install and unsinstall
 register_activation_hook(__FILE__, ["\CoverageMap\Libs\Manager", "install"]);
 register_uninstall_hook(__FILE__, ["\CoverageMap\Libs\Manager", "uninstall"]);
