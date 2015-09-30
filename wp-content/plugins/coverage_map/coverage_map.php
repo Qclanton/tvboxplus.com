@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Coverage Map
-Description: Plugin set and display map with internet coverage
+Description: Plugin for set and display map with internet coverage
 Version: 100
 Author: Vividcrest
 */
@@ -38,7 +38,7 @@ add_action("admin_enqueue_scripts", function() {
     
     
     // For Map
-    wp_enqueue_script("coverage-map-map",  plugin_dir_url(__FILE__) . "Views/Js/Map.js", ["jquery"]);
+    wp_enqueue_script("coverage-map-map",  plugin_dir_url(__FILE__) . "Views/Js/Map.js");
     wp_enqueue_script("coverage-map-map-toggle", plugin_dir_url(__FILE__) . "Views/Js/MapToggle.js", ["jquery"]); 
     
     
