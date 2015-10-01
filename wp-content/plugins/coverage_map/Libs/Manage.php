@@ -1,7 +1,5 @@
 <?php
-namespace CoverageMap\Libs;
-
-class Manage
+class CoverageMap_Libs_Manage
 {
     const OPTIONS_PREFIX = "coverage_map_";
     const OPTIONS_LIST = "center,zones,points,map";
@@ -20,14 +18,14 @@ class Manage
         
         
         // Show content
-        $content = Helper::render(__DIR__ . "/../Views/Options.php", $options);
+        $content = CoverageMap_Libs_Helper::render(dirname(__FILE__). "/../Views/Options.php", $options);
         echo $content;
     }
     
     public static function set()
     {   
         // Save options
-        $options = (isset($_POST['options']) ? $_POST['options'] : []);
+        $options = (isset($_POST['options']) ? $_POST['options'] : array());
         self::storeOptions($options);
 
 
@@ -54,20 +52,24 @@ class Manage
     public static function getStoredOptions() 
     {
         $list = explode(",", self::OPTIONS_LIST);
-        $stored = [];
+        $stored = array();
         
         foreach ($list as $name) {
             $value = get_option(self::OPTIONS_PREFIX . $name);
             
             $decoded = json_decode($value, true);
-            if(!json_last_error()) {
-                $value = $decoded;
-            }
+            $value = $decoded;
             
             $stored[$name] = self::mergeWithDefaultValues($name, $value);
         }
         
-        return self::tuneOptions(Helper::toObject($stored));;
+        return self::tuneOptions(CoverageMap_Libs_Helper::toObject($stored));;
+    }
+    
+    
+    public static function sortZones($some, $other)
+    {
+        return ($some->radius > $other->radius ? 1 : -1);
     }
     
     public static function tuneOptions($options) 
@@ -81,9 +83,7 @@ class Manage
         if (isset($options->zones)) {    
             // "Zones" should be numeric array ordere by radius
             $options->zones = array_values((array)$options->zones);
-            usort($options->zones, function($some, $other) { 
-                return ($some->radius > $other->radius ? 1 : -1);
-            });
+            usort($options->zones, array("CoverageMap_Libs_Manage", "sortZones"));
         }
         
         return $options;
@@ -91,19 +91,19 @@ class Manage
     
     private static function mergeWithDefaultValues($name, $value)
     {
-        $default = [
-            'map' => [
+        $default = array(
+            'map' => array(
                 'address' => null,
                 'longitude' => null,
                 'latitude' => null,
                 'zoom' => 13,
                 'width' => 500,
                 'height' => 500,
-            ]
-        ];
+            )
+        );
         
         if (array_key_exists($name, $default)) {  
-            $value = array_replace_recursive($default[$name], (array)$value);
+            $value = CoverageMap_Libs_Helper::arrayReplaceRecursive($default[$name], (array)$value);
         }
 
         return $value;
@@ -131,3 +131,4 @@ class Manage
         };        
     }
 }
+?>

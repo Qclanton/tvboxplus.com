@@ -7,7 +7,6 @@
         <a href="#" class="nav-tab <?= $activeTab == "zones" ? "nav-tab-active" : "" ?>" data-tab="zones">Zones</a>
     </h2>
     
-    
     <form method="POST" action="">
         <input type="hidden" name="action" value="set">
         
@@ -60,7 +59,7 @@
                 <!-- Map -->
                 <a data-state="hidden" id="map-toggle" class="button" href="#" style="margin-bottom: 10px">Show Map</a>          
                 <div id="map-wrapper" style="display: none; margin-bottom: 10px">
-                    <?= \CoverageMap\Libs\Helper::render(__DIR__ . "/Map.php", $vars); ?> 
+                    <?= CoverageMap_Libs_Helper::render(dirname(__FILE__) . "/Map.php", $vars); ?> 
                 </div>
             </div>
             
@@ -69,7 +68,7 @@
             <!-- Tab 'points'-->
             <div class="tab-content" data-tab="points" <?= $activeTab == "points" ? "" : "style='display:none'" ?>>
                 <br>
-                <a href="#" class="page-title-action new-point-toggle" data-state="hidden">Add point</a>
+                <a href="#" class="page-title-action add-new-h2 new-point-toggle" data-state="hidden">Add point</a>
                 
                 <!-- 'New Point' block -->
                 <div id="new-point" style="display: none">
@@ -158,7 +157,7 @@
             <!-- Tab 'zones'-->
             <div class="tab-content" data-tab="zones" <?= $activeTab == "zones" ? "" : "style='display:none'" ?>>
                 <br>
-                <a href="#" class="page-title-action new-zone-toggle" data-state="hidden">Add zone</a>
+                <a href="#" class="page-title-action add-new-h2 new-zone-toggle" data-state="hidden">Add zone</a>
                 
                 <!-- 'New Zone' block -->
                 <div id="new-zone" style="display: none">

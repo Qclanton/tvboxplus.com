@@ -24,7 +24,7 @@ var mapSettings = {
                 longitude: <?= $point->longitude ?>, 
                 title: "<?= $point->title ?>",
                 description: "<?= $point->description ?>"
-            },    
+            },
         <? } ?>
     ],
     

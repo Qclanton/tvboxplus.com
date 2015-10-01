@@ -1,7 +1,5 @@
 <?php
-namespace CoverageMap\Libs;
-
-class Shortcodes
+class CoverageMap_Libs_Shortcodes
 {
     public static function drawMap()
     {
@@ -17,3 +15,4 @@ class Shortcodes
         echo $content;
     }
 }
+?>
