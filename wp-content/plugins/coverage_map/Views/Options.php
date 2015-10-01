@@ -111,7 +111,7 @@
                 <div id="points">                    
                     <table class="form-table">
                         <tbody>
-                            <? foreach ($points as $i=>$point) { ?>
+                            <?php foreach ($points as $i=>$point) { ?>
                                 <tr data-point="<?= $i ?>">
                                     <th scope="row">
                                         <a href="#" class="remove-point button" data-point="<?= $i ?>">Delete</a>
@@ -134,7 +134,7 @@
                                         <label for="options[points][<?= $i ?>][title]">Title</label>
                                     </th>
                                     <td>
-                                        <input name="options[points][<?= $i ?>][title]" type="text" class="large-text" value="<?= esc_attr($point->title) ?>">
+                                        <input name="options[points][<?= $i ?>][title]" type="text" class="large-text" value="<?= stripslashes($point->title) ?>">
                                     </td>
                                 </tr>
 
@@ -143,10 +143,10 @@
                                         <label for="options[points][<?= $i ?>][title]">Description</label>
                                     </th>
                                     <td>
-                                        <textarea name="options[points][<?= $i ?>][description]" rows="10" cols="50" class="large-text code"><?= (esc_textarea($point->description)) ?></textarea>
+                                        <textarea name="options[points][<?= $i ?>][description]" rows="10" cols="50" class="large-text code"><?= stripslashes($point->description) ?></textarea>
                                     </td>
                                 </tr>
-                            <? } ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -183,6 +183,15 @@
                             
                             <tr>
                                 <th scope="row">
+                                    <label for="options[zones][<?= count($zones)+1 ?>][text]">Text</label>
+                                </th>
+                                <td>
+                                    <input name="options[zones][<?= count($zones)+1 ?>][text]" type="text" class="regular-text">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th scope="row">
                                     <label for="options[zones][<?= count($zones)+1 ?>][color]">Color</label>
                                 </th>
                                 <td>
@@ -198,7 +207,7 @@
                 <div id="zones">                    
                     <table class="form-table">
                         <tbody>
-                            <? foreach ($zones as $i=>$zone) { ?>
+                            <?php foreach ($zones as $i=>$zone) { ?>
                                 <tr data-zone="<?= $i ?>">
                                     <th scope="row">
                                         <a href="#" class="remove-zone button" data-zone="<?= $i ?>">Delete</a>
@@ -225,13 +234,22 @@
                                 
                                 <tr data-zone="<?= $i ?>">
                                     <th scope="row">
+                                        <label for="options[zones][<?= $i ?>][text]">Text</label>
+                                    </th>
+                                    <td>
+                                        <input name="options[zones][<?= $i ?>][text]" type="text" class="regular-text" value="<?= stripslashes($zone->text) ?>">
+                                    </td>
+                                </tr>
+                                
+                                <tr data-zone="<?= $i ?>">
+                                    <th scope="row">
                                         <label for="options[zones][<?= $i ?>][color]">Color</label>
                                     </th>
                                     <td>
                                         <input name="options[zones][<?= $i ?>][color]" type="text" class="short-text color-picker" value="<?= $zone->color ?>">
                                     </td>
                                 </tr>
-                            <? } ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

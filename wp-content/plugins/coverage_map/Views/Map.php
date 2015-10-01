@@ -33,7 +33,8 @@ var mapSettings = {
             {
                 color: "<?= $zone->color ?>", 
                 radius: <?= $zone->radius ?>, 
-                speed: "<?= $zone->speed ?>"
+                speed: "<?= $zone->speed ?>",
+                text: "<?= $zone->text ?>"
             },
         <? } ?>
     ]

@@ -29,7 +29,7 @@ function drawZones(coverageMap, center, circles) {
 
         // Create new Info window
         var circleInfoWindow = new google.maps.InfoWindow({
-            content: "Download Speed up to " + circle.speed + " Mb/sec"
+            content: circle.text
         });        
 
 
