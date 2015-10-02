@@ -17,7 +17,7 @@ class CoverageMap_Libs_Shortcodes
         $options->map->width = (!empty($params['width']) ? $params['width'] : $options->map->width);
         
         // Render template
-        $content .= CoverageMap_Libs_Helper::render(__DIR__ . "/../Views/Map.php", $options);
+        $content .= CoverageMap_Libs_Helper::render(dirname(__FILE__) . "/../Views/Map.php", $options);
         echo $content;
     }
 }
