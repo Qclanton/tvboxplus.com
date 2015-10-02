@@ -3,9 +3,9 @@ class CoverageMap_Libs_AddressChecker
 {
     private static function makeRequest($address, $city, $state, $zip) 
     {
-        $api_root = "http://iomdsl.ipservices.att.com";
+        $api_root = "http://iomdsl.ipservices.att.com/ordering/prequal.cgi";
         $tid = "1443736506356151512";
-        $api_url = "{$api_root}/ordering/prequal.cgi?tid={$tid}&current_page=PREQUAL";
+        $api_url = "{$api_root}?tid={$tid}&current_page=PREQUAL";
         
         $params = array(
             'I_SITE_PHONE' => "9085551234",
@@ -41,6 +41,9 @@ class CoverageMap_Libs_AddressChecker
         return (!empty($result_string) && preg_match($success_pattern, $result_string));
     }
     
+    
+    
+    
     public static function check($address, $city, $state, $zip)
     {
         $answer = self::makeRequest($address, $city, $state, $zip);
@@ -49,18 +52,80 @@ class CoverageMap_Libs_AddressChecker
         return $result;  
     }
     
-    public static function checkThruAjax() {
+    public static function getAddressInfo($address) 
+    {
+        // Set default data
+        $default_info = (object)array(
+            'address' => "Los Angeles",
+            'city' => "Los Angeles",
+            'state' => "CA",
+            'zip' => "90001"
+        );
+        
+        
+        // Send request to API
+        $api_url = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+        $context = stream_context_create(
+            array(
+                'http' => array(
+                    'timeout' => 5
+                )
+            )
+        ); 
+        $api_data = json_decode(@file_get_contents($api_url . urlencode($address), false, $context));        
+
+        // Return default data if request failed
         if (
-            !isset($_POST['address']) ||
-            !isset($_POST['city']) ||
-            !isset($_POST['state']) ||
-            !isset($_POST['zip'])
+            !isset($api_data->status) || 
+            $api_data->status !== "OK" || 
+            !isset($api_data->results[0]->address_components) ||
+            !isset($api_data->results[0]->formatted_address)
         ) {
+                
+            return $default_info;
+        }
+        
+        
+        // Extract necessary data drom API answer
+        $info = $default_info;
+        $result = $api_data->results[0];
+        $address_components = $result->address_components;        
+        $info->address = $result->formatted_address;
+        
+        foreach ($address_components as $component) {
+            // Check object
+            if (
+                !isset($component->short_name) ||
+                !isset($component->types) ||
+                !is_array($component->types)                
+            ) {
+                continue;
+            }
+            
+            // Try to extract data
+            if (in_array("locality", $component->types)) {
+                $info->city = $component->short_name;
+            } elseif (in_array("administrative_area_level_1", $component->types)) {
+                $info->state = $component->short_name;
+            } elseif (in_array("postal_code", $component->types)) {
+                $info->zip = $component->short_name;
+            }    
+        }
+        
+        
+        // Return collected information
+        return $info;
+    }
+    
+    public static function checkThruAjax() {
+        if (!isset($_POST['address'])) {
             die("0");
         }
         
-        die((string)self::check($_POST['address'], $_POST['city'], $_POST['state'], $_POST['zip']));
+        $recognized = self::getAddressInfo($_POST['address']);
+        $result = self::check($recognized->address, $recognized->city, $recognized->state, $recognized->zip);
+        
+        die((string)$result);
     }
 }
-    
 ?>

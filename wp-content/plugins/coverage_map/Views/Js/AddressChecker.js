@@ -14,14 +14,11 @@
         $('#address-loading').show();
         
         
-        
+
         // Define params        
         var params = {
             action: 'coverage_map_check_address',
-            address: $('#address-for-checking').val(),
-            city: 'Los Angeles',
-            state: 'CA',
-            zip: '91101'
+            address: $('#address-for-checking').val()
         }
 
 
