@@ -42,7 +42,8 @@ function enqueueCoveragemapScripts() {
     
     // For Map
     wp_enqueue_script("coverage-map-map",  plugin_dir_url(__FILE__) . "Views/Js/Map.js");
-    wp_enqueue_script("coverage-map-map-toggle", plugin_dir_url(__FILE__) . "Views/Js/MapToggle.js", array("jquery")); 
+    wp_enqueue_script("coverage-map-map-toggle", plugin_dir_url(__FILE__) . "Views/Js/MapToggle.js", array("jquery"));
+    wp_enqueue_script("coverage-map-map-address-checker", plugin_dir_url(__FILE__) . "Views/Js/AddressChecker.js", array("jquery")); 
     
     
     // For autocomplete
@@ -70,9 +71,6 @@ add_action("admin_enqueue_scripts", "enqueueCoveragemapScripts");
         
 
 // Add menu item
-function vers() {
-    echo phpinfo();
-}
 function doCoveragemapAction() {
     $action = (isset($_POST['action']) && in_array($_POST['action'], array("show", "set")) ? $_POST['action'] : "show");
     
@@ -89,13 +87,14 @@ add_shortcode("coverage_map", array("CoverageMap_Libs_Shortcodes", "drawMap"));
 
 
 
-add_action('activated_plugin','save_error');
-function save_error(){
-    update_option('plugin_error',  ob_get_contents());
-}
-
 
 // Install and unsinstall
 register_activation_hook(__FILE__, array("CoverageMap_Libs_Manager", "install"));
 register_uninstall_hook(__FILE__, array("CoverageMap_Libs_Manager", "uninstall"));
+
+
+
+// Register AJAX actions
+add_action("wp_ajax_coverage_map_check_address", array("CoverageMap_Libs_AddressChecker", "checkThruAjax"));
+add_action("wp_ajax_nopriv_coverage_map_check_address", array("CoverageMap_Libs_AddressChecker", "checkThruAjax"));
 ?>
