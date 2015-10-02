@@ -9,7 +9,10 @@
 <label for="address-for-checking">Type your address: </label>
 <input id="address-for-checking" type="text" class="address"/>
 <img id="address-loading" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/loading.gif">
-<img id="address-approved" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/approved.png">
+<div id="address-approved" style="display: none" >
+    <img width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/approved.png">
+    <p>Your internet speed might be <strong id="approved-speed">0</strong> Mbps!
+</div>
 <img id="address-declined" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/declined.png">
 <a id="check-address" href="#">Check!</a>
 

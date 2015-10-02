@@ -10,14 +10,14 @@ class CoverageMap_Libs_Shortcodes
         $content .= "<script src='" . content_url() . "/plugins/coverage_map/Views/Js/AddressChecker.js'></script>";
         
         // Get options
-        $options = Manage::getStoredOptions();        
+        $options = CoverageMap_Libs_Manage::getStoredOptions();        
         
         // Set some options from params
         $options->map->height = (!empty($params['height']) ? $params['height'] : $options->map->height);
         $options->map->width = (!empty($params['width']) ? $params['width'] : $options->map->width);
         
         // Render template
-        $content .= Helper::render(__DIR__ . "/../Views/Map.php", $options);
+        $content .= CoverageMap_Libs_Helper::render(__DIR__ . "/../Views/Map.php", $options);
         echo $content;
     }
 }

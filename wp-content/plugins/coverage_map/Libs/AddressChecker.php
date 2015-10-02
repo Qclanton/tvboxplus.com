@@ -29,16 +29,21 @@ class CoverageMap_Libs_AddressChecker
         return file_get_contents($api_url, false, $context);         
     }
     
-    private static function findOutResult($answer) 
+    private static function findMeters($answer) 
     {
         $parsed = new CoverageMap_Libs_ThirdParty_Nokogiri($answer);
         $result_blocks = @$parsed->get("table.ltGreyShade td[valign=top]")->toArray();
         $result_string_array = @array_pop($result_blocks[0]['p']);
         $result_string = $result_string_array['#text'];
         
-        $success_pattern = "/This location is estimated to be .* feet from the central office/s";
+        $meters = 0;
+        $success_pattern = "/This location is estimated to be (.*) feet from the central office/s";
         
-        return (!empty($result_string) && preg_match($success_pattern, $result_string));
+        if (!empty($result_string) && preg_match($success_pattern, $result_string, $matches)) {
+            $meters = ceil($matches[1]*0.3048); // API provide data in feets
+        }
+        
+        return $meters;
     }
     
     
@@ -47,9 +52,23 @@ class CoverageMap_Libs_AddressChecker
     public static function check($address, $city, $state, $zip)
     {
         $answer = self::makeRequest($address, $city, $state, $zip);
-        $result = self::findOutResult($answer);
+        $meters = self::findMeters($answer);
         
-        return $result;  
+        if ($meters == 0) {
+            return false;
+        }
+        
+        // Find speed by distance
+        $options = CoverageMap_Libs_Manage::getStoredOptions();
+
+        foreach ($options->zones as $i=>$zone) {
+            if ($meters <= $zone->radius || ($i+1 == count($options->zones))) {
+                $speed = $zone->speed;
+                break;
+            }
+        }
+        
+        return $speed;  
     }
     
     public static function getAddressInfo($address) 

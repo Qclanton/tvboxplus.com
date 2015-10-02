@@ -29,13 +29,13 @@
             checkAddressButton.show();
             
             
-            if (response == '1') {
-                $('#address-declined').hide();
-                $('#address-approved').show();
-            } else {
+            if (response == '0' || !(/[0-9\.,]{1,10}/.test(response))) {
                 $('#address-approved').hide();
                 $('#address-declined').show();   
-                console.log(response);
+            } else {
+                $('#approved-speed').html(response);       
+                $('#address-declined').hide();
+                $('#address-approved').show();
             }
         });
     });
