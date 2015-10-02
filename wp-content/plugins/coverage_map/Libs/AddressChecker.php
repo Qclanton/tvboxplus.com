@@ -32,8 +32,9 @@ class CoverageMap_Libs_AddressChecker
     private static function findOutResult($answer) 
     {
         $parsed = new CoverageMap_Libs_ThirdParty_Nokogiri($answer);
-        $result_block = @$parsed->get("table.ltGreyShade td[valign=top]")->toArray()[0];
-        $result_string = @array_pop($result_block['p'])['#text'];
+        $result_blocks = @$parsed->get("table.ltGreyShade td[valign=top]")->toArray();
+        $result_string_array = @array_pop($result_blocks[0]['p']);
+        $result_string = $result_string_array['#text'];
         
         $success_pattern = "/This location is estimated to be .* feet from the central office/s";
         
