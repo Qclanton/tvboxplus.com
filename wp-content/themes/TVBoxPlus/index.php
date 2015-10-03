@@ -11,7 +11,6 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/tabs.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/login.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,geometry,places&sensor=false"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/maps.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/dynamic_content.js"></script>
 </head>
 	

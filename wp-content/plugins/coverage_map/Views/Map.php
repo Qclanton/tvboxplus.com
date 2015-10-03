@@ -6,16 +6,20 @@
     ">
 </div>
 
-<label for="address-for-checking">Type your address: </label>
-<input id="address-for-checking" type="text" class="address"/>
-<img id="address-loading" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/loading.gif">
-<div id="address-approved" style="display: none" >
-    <img width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/approved.png">
-    <p>Your internet speed might be <strong id="approved-speed">0</strong> Mbps!
+<div class="address-for-checking--wrapper">
+    <label class="address-for-checking" for="address-for-checking">Service Availability Quick Lookup </label>
+    <input id="address-for-checking" type="text" class="address"/>
+    <a id="check-address" href="#">Check!</a>
+    
+    <img id="address-loading" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/loading.gif">
+    
+    <div id="address-approved" style="display: none" >
+        <img width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/approved.png">
+        <p>Your internet speed might be <strong id="approved-speed">0</strong> Mbps!
+    </div>
+    
+    <img id="address-declined" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/declined.png">
 </div>
-<img id="address-declined" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/declined.png">
-<a id="check-address" href="#">Check!</a>
-
 
 <!-- Set the map settings -->
 <script>    
