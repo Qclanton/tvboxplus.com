@@ -15,10 +15,12 @@
     
     <div id="address-approved" style="display: none" >
         <img width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/approved.png">
-        <p>Your internet speed might be <strong id="approved-speed">0</strong> Mbps!
+        <p>Available Internet download speed up to <strong id="approved-speed">0</strong> Mb/s.
     </div>
     
-    <img id="address-declined" style="display: none" width="32px" height="32px" src="<?= content_url() ?>/plugins/coverage_map/Views/Images/declined.png">
+    <div id="address-declined" style="display: none">
+        <p>We could not verify the address. Please contact Support at 888.757.8477. Thank you</p>
+    </div>    
 </div>
 
 <!-- Set the map settings -->
