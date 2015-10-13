@@ -32,6 +32,17 @@ class CoverageMap_Libs_AddressChecker
     private static function findMeters($answer) 
     {
         $parsed = new CoverageMap_Libs_ThirdParty_Nokogiri($answer);
+        
+        // Check availability
+        $tables = @$parsed->get("table.ltGreyShade")->toArray();
+        $cell = $tables[1]['tr'][2]['td'][0];
+        
+        if (isset($cell['p'][0]) && $cell['p'][0]['#text'] === "Single-IP ADSL/IDSL services are not currently available for this location.") {
+            return 0;
+        }
+        
+
+        // Fetch the distance
         $result_blocks = @$parsed->get("table.ltGreyShade td[valign=top]")->toArray();
         $result_string_array = @array_pop($result_blocks[0]['p']);
         $result_string = $result_string_array['#text'];
@@ -97,8 +108,7 @@ class CoverageMap_Libs_AddressChecker
         if (
             !isset($api_data->status) || 
             $api_data->status !== "OK" || 
-            !isset($api_data->results[0]->address_components) ||
-            !isset($api_data->results[0]->formatted_address)
+            !isset($api_data->results[0]->address_components)
         ) {
                 
             return $default_info;
@@ -109,7 +119,6 @@ class CoverageMap_Libs_AddressChecker
         $info = $default_info;
         $result = $api_data->results[0];
         $address_components = $result->address_components;        
-        $info->address = $result->formatted_address;
         
         foreach ($address_components as $component) {
             // Check object
@@ -122,7 +131,11 @@ class CoverageMap_Libs_AddressChecker
             }
             
             // Try to extract data
-            if (in_array("locality", $component->types)) {
+            if (in_array("street_number", $component->types)) {
+                $street_number = $component->short_name;
+            } elseif (in_array("route", $component->types)) {
+                $route = $component->short_name;
+            } elseif (in_array("locality", $component->types)) {
                 $info->city = $component->short_name;
             } elseif (in_array("administrative_area_level_1", $component->types)) {
                 $info->state = $component->short_name;
@@ -131,6 +144,16 @@ class CoverageMap_Libs_AddressChecker
             }    
         }
         
+        
+        // Fetch the address
+        if (!empty($route)) {
+           $info->address = $route; 
+        }
+        
+        if (!empty($route) && !empty($street_number)) {
+            $info->address = "{$street_number} {$route}";
+        }
+         
         
         // Return collected information
         return $info;
