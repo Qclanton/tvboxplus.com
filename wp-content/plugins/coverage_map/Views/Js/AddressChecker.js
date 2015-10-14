@@ -29,7 +29,7 @@
             checkAddressButton.show();
             
             
-            if (response == '0' || !(/[0-9\.,]{1,10}/.test(response))) {
+            if (response == '0' || !(/^[0-9\.,]{1,10}$/.test(response))) {
                 $('#address-approved').hide();
                 $('#address-declined').show();   
             } else {

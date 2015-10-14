@@ -26,7 +26,7 @@ class CoverageMap_Libs_AddressChecker
             )
         );
         
-        return file_get_contents($api_url, false, $context);         
+        return @file_get_contents($api_url, false, $context); // Ignore errors
     }
     
     private static function findMeters($answer) 
@@ -62,12 +62,21 @@ class CoverageMap_Libs_AddressChecker
     
     public static function check($address, $city, $state, $zip)
     {
+        // Make request
         $answer = self::makeRequest($address, $city, $state, $zip);
+        
+        if (empty($answer)) {
+            return false;
+        }
+        
+        
+        // Fetch data from request
         $meters = self::findMeters($answer);
         
         if ($meters == 0) {
             return false;
         }
+        
         
         // Find speed by distance
         $options = CoverageMap_Libs_Manage::getStoredOptions();
