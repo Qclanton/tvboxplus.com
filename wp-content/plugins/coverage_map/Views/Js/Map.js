@@ -103,14 +103,15 @@ function initMap(settings) {
             var isShown = address.isShown || false;
 
             if (!isShown) {
-                // Show infowindow                
+                // Show infowindow 
+                /*               
                 infowindow.setContent(''
                     +'<h4>' + address.title + '</h4>'
                     +'<p>' + address.description + '</p>'
                 );
 
                 infowindow.open(coverageMap, this);
-
+                */
 
                 // Draw zones
                 address.zones = drawZones(coverageMap, position, settings.circles);
@@ -126,7 +127,7 @@ function initMap(settings) {
 
 
                 // Close infowindow
-                infowindow.close();
+                // infowindow.close();
 
 
                 // Mark as not mshown
